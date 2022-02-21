@@ -1176,7 +1176,7 @@ parent:
   component: web-server
 ```
 
-## Dataflows object
+## Dataflows object
 
 Data flows are the elements that describe the movement of relevant information (assets) across our architecture.
 
@@ -1726,7 +1726,7 @@ mitigations:
     state: implemented
 ```
 
-## Repository object
+## Repository object
 
 Gathers all the info concerning the Repository where the referenced code is located.
 
@@ -1758,7 +1758,7 @@ repository:
         url: https://github.com/my-project
 ```
 
-## Size object
+## Size object
 
 Represents a very basic information about a size of an element.
 
@@ -1793,7 +1793,7 @@ Represents a very basic information about a size of an element.
 </tr>
 </table>
 
-### Position object
+### Position object
 
 Represents a very basic information about a position of an element.
 
