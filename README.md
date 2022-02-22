@@ -889,7 +889,7 @@ component. It should contain an attribute name stating the component type to avo
 
 </table>
 
-#### Example
+#### Example
 
 ```yaml
 components:
@@ -1524,7 +1524,7 @@ Risk information for the associated threat.
 </table>
 <br/>
 
-#### Example
+#### Example
 
 ```yaml
 risk:
@@ -1578,7 +1578,7 @@ threats.</td>
 </tr>
 </table>
 
-#### Example
+#### Example
 
 ```yaml
 threats:
