@@ -1,6 +1,6 @@
 # Introduction
 
-The Open Threat Modeling Format (OTM) defines a platform independent way to define the threat model of any system. 
+The Open Threat Modeling Format (OTM) defines a platform independent way to define the threat model of any system.
 
 OTM allows both humans and computers to understand what are the components of a system, how are they distributed, the security risks that could be exposed to attackers and the mitigations that could be implemented to avoid those vulnerabilities.
 
@@ -22,7 +22,7 @@ Current schema version: 0.1.0
 
 An OTM document is itself a JSON object, which may be represented either in JSON or YAML format.
 
-All field names in the specification are __case sensitive__. This includes all fields that are used as keys in a map.
+All field names in the specification are **case sensitive**. This includes all fields that are used as keys in a map.
 
 The specification follows the same approach to JSON formats as the OpenAPI specification. See https://swagger.io/specification/ for more information.
 
@@ -48,17 +48,17 @@ The formats available to be used within an OTM files are:
 
 ## OTM object
 
-| Field           | Type                                              | Description                                                                                                                                                                            | Examples          |
-|-----------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
-| otmVersion      | string                                            | **REQUIRED** This field states the OTM version used in the current file. It is an important field in order to ensure backwards compatibility.                                          | `otmVersion: 0.1` |
-| project         | [Project object](#project-object)                 | **REQUIRED** The project node represents the entity within all the other elements are grouped. Its the unit of work.                                                                   |                   |
-| representations | [Representations object](#representations-object) | This node can define several ways on which the project can be represented. Representation is an abstract concept and there might be several implementations.                           |                   |
-| assets          | [Assets object](#assets-object)                   | Assets are the different kinds of sensible information that take part in our threat model.                                                                                             |                   |
-| components      | [Components object](#components-object)           | Components are the different pieces of software / hardware that make our project.                                                                                                      |                   |
-| dataflows       | [DataFlows object](#dataflows-object)             | Data flows are the elements that describe the movement of relevant information (assets) across our architecture.                                                                       |                   |
-| trustZones      | [TrustZones object](#trustzones-object)           | Trust zones are the different areas on within components are located. They define how trust worthy an area is based on how accesible it is. The more accessible the less trust worthy. |                   |
-| threats         | [Threats object](#threats-object)                 | Threats are the undesirable that can occur in our system and that we want to prevent.                                                                                                  |                   |
-| mitigations     | [Mitigations object](#mitigations-object)         | Mitigations are the actions we can take in other to prevent a threat of taking place.                                                                                                  |                   |
+| Field           | Type                                              | Description                                                                                                                                                                                | Examples            |
+| --------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+| otmVersion      | string                                            | **REQUIRED** This field states the OTM version used in the current file. It is an important field in order to ensure backwards compatibility.                                              | `otmVersion: 0.1.0` |
+| project         | [Project object](#project-object)                 | **REQUIRED** The project node represents the entity within all the other elements are grouped. It's the unit of work.                                                                      |                     |
+| representations | [Representations object](#representations-object) | Representations define different ways in which the project may be represented. Representation is an abstract concept and there might be several implementations.                           |                     |
+| assets          | [Assets object](#assets-object)                   | Assets are the different kinds of sensible information that take part in our threat model.                                                                                                 |                     |
+| components      | [Components object](#components-object)           | Components are the different pieces of software / hardware that make up our project.                                                                                                       |                     |
+| dataflows       | [DataFlows object](#dataflows-object)             | Data flows are the elements that describe the movement of relevant information (assets) across our architecture.                                                                           |                     |
+| trustZones      | [TrustZones object](#trustzones-object)           | Trust zones are the different areas within which components are located. They define how trustworthy an area is, based on how accessible it is: the more accessible, the less trustworthy. |                     |
+| threats         | [Threats object](#threats-object)                 | Threats are the undesirable outcomes that can occur in our system and that we want to prevent.                                                                                             |                     |
+| mitigations     | [Mitigations object](#mitigations-object)         | Mitigations are the actions that we can take (or controls that we can put in place) in order to prevent a threat from taking place.                                                        |                     |
 
 ## Project object
 
@@ -80,6 +80,7 @@ The project node represents the entity within all the other elements are grouped
 <td>
 
     name: Project name
+
 </td>
 </tr>
 
@@ -91,6 +92,7 @@ The project node represents the entity within all the other elements are grouped
 <td>
 
     id: project-example-id
+
 </td>
 </tr>
 
@@ -102,6 +104,7 @@ The project node represents the entity within all the other elements are grouped
 <td>
 
     description: This is the threat model for the app 'MuCustomApp123
+
 </td>
 </tr>
 
@@ -109,10 +112,11 @@ The project node represents the entity within all the other elements are grouped
 <tr>
 <td>owner</td>
 <td>string</td>
-<td>Name of the projects owner. This is the person responsable for the project.</td>
+<td>Name of the project's owner. This is the person responsible for the project.</td>
 <td>
 
     owner: John Doe
+
 </td>
 </tr>
 
@@ -124,6 +128,7 @@ The project node represents the entity within all the other elements are grouped
 <td>
 
     ownerContact: email@email.com
+
 </td>
 </tr>
 
@@ -138,6 +143,7 @@ Array of labels to tag the project</td>
     tags:
         - microservice
         - spring
+
 </td>
 </tr>
 
@@ -145,12 +151,13 @@ Array of labels to tag the project</td>
 <tr>
 <td>attributes</td>
 <td>Map [string, string]</td>
-<td>This is a free map of attributes that complete the information about the project.</td>
+<td>This is a free-form map of attributes that complete the information about the project.</td>
 <td>
 
     attributes:
         filePath: “file.xml”
         cmdbId: MyApp123
+
 </td>
 </tr>
 
@@ -179,8 +186,8 @@ Representation is an abstract concept and there might be several implementations
 
 These are the currently supported representation types:
 
-* `diagram`
-* `code`
+- `diagram`
+- `code`
 
 Each representation has these fields:
 
@@ -200,6 +207,7 @@ Each representation has these fields:
 <td>
 
     name: Architecture diagram
+
 </td>
 </tr>
 
@@ -211,6 +219,7 @@ Each representation has these fields:
 <td>
 
     id: architecture-diagram-id
+
 </td>
 </tr>
 
@@ -218,10 +227,11 @@ Each representation has these fields:
 <tr>
 <td>type</td>
 <td>string</td>
-<td><b>REQUIRED</b> Type of representation</td>
+<td><b>REQUIRED</b> Type of representation.</td>
 <td>
 
     type: diagram
+
 </td>
 </tr>
 <tr></tr>
@@ -232,6 +242,7 @@ Each representation has these fields:
 <td>
 
     description: This is a diagram of the project's architecture
+
 </td>
 </tr>
 
@@ -240,13 +251,14 @@ Each representation has these fields:
 <td>attributes</td>
 <td>Map [string, string]</td>
 <td>	
-This is a free list of attributes that complete the description of the representation.</td>
+This is a free-form list of attributes that complete the description of the representation.</td>
 <td>
 
     attributes:
         language: java
         platform: github
         vcs: git
+
 </td>
 </tr>
 
@@ -277,6 +289,7 @@ representations:
       platform: github
       vcs: git
 ```
+
 ## Representation supported types
 
 Depending on the type selected, some extra fields must be included in the representation. The supported representation types are:
@@ -288,7 +301,7 @@ Represents a diagram with very basic information.
 Under the type “diagram“ we have the following extra fields:
 
 | Field | Type                        | Description                                                                  | Examples |
-|-------|-----------------------------|------------------------------------------------------------------------------|----------|
+| ----- | --------------------------- | ---------------------------------------------------------------------------- | -------- |
 | size  | [Size object](#size-object) | **REQUIRED** Object that contains the information regarding the diagram size |          |
 
 #### Example
@@ -313,9 +326,9 @@ Represents a repository of code.
 
 Under the type “code“ we have the following extra fields:
 
-| Field      | Type                                    | Description                                                                         | Examples |
-|------------|-----------------------------------------|-------------------------------------------------------------------------------------|----------|
-| repository | [Repository object](#repository-object) | Gathers all the info concerning the Repository where the referenced code is located |          |
+| Field      | Type                                    | Description                                                                    | Examples |
+| ---------- | --------------------------------------- | ------------------------------------------------------------------------------ | -------- |
+| repository | [Repository object](#repository-object) | Contains information about the Repository where the referenced code is located |          |
 
 #### Example
 
@@ -335,10 +348,10 @@ representations:
 
 The representation element stated how an element is represented with the available representations.
 
-In the current version we support two types of representation types as was mentioned here [OTM version 0.1.0 | Representations-object](#representations-object): 
+In the current version we support two types of representation types as was mentioned here [OTM version 0.1.0 | Representations-object](#representations-object):
 
-* diagram
-* code
+- diagram
+- code
 
 Therefore, there can be also two types of representation instances:
 
@@ -361,7 +374,8 @@ Represents an element of a diagram.
 <td><b>REQUIRED</b> Id of the representation on which this element is represented</td>
 <td>
 
-    representation: architecture-diagram    
+    representation: architecture-diagram
+
 </td>
 </tr>
 
@@ -373,6 +387,7 @@ Represents an element of a diagram.
 <td>
 
     name: Component Box
+
 </td>
 </tr>
 
@@ -384,6 +399,7 @@ Represents an element of a diagram.
 <td>
 
     id: component-box-id
+
 </td>
 </tr>
 
@@ -391,7 +407,7 @@ Represents an element of a diagram.
 <tr>
 <td>position</td>
 <td><a href="#position-object">Position object</a></td>
-<td><b>REQUIRED</b> This node contains all the information on the situation of the element within the diagram.</td>
+<td><b>REQUIRED</b> This node contains all the information about the location of the element within the diagram.</td>
 <td></td>
 </tr>
 
@@ -407,12 +423,13 @@ Represents an element of a diagram.
 <tr>
 <td>attributes</td>
 <td>Map &lt;string, string&gt;</td>
-<td>This is a free map of attributes that complete the description of the representation.</td>
+<td>This is a free-form map of attributes that complete the description of the representation.</td>
 <td>
 
     attributes:
       color: red
       shape: square
+
 </td>
 </tr>
 </table>
@@ -438,7 +455,7 @@ attributes:
 
 ### Representation element for code
 
-Despite all fields being optional at least one of them is required.
+Despite all fields being optional, at least one of them is required.
 
 <table>
 <tr>
@@ -456,6 +473,7 @@ Despite all fields being optional at least one of them is required.
 <td>
 
     representation: code-repository
+
 </td>
 </tr>
 
@@ -467,6 +485,7 @@ Despite all fields being optional at least one of them is required.
 <td>
 
     name: Example Class
+
 </td>
 </tr>
 
@@ -478,6 +497,7 @@ Despite all fields being optional at least one of them is required.
 <td>
 
     id: org.example.class
+
 </td>
 </tr>
 
@@ -489,6 +509,7 @@ Despite all fields being optional at least one of them is required.
 <td>
 
     file: path/to/class.java
+
 </td>
 </tr>
 
@@ -500,6 +521,7 @@ Despite all fields being optional at least one of them is required.
 <td>
 
     line: 324
+
 </td>
 </tr>
 
@@ -518,6 +540,7 @@ Despite all fields being optional at least one of them is required.
         int number = reader.nextInt()
         System.out.println("You entered: " + number);
     }
+
 </td>
 </tr>
 
@@ -525,12 +548,13 @@ Despite all fields being optional at least one of them is required.
 <tr>
 <td>attributes</td>
 <td>Map &lt;string, string&gt;</td>
-<td>This is a free list of attributes that complete the description of the representation.</td>
+<td>This is a free-form list of attributes that complete the description of the representation.</td>
 <td>
 
     attributes:
       source: sonar
       author: John Doe
+
 </td>
 </tr>
 
@@ -577,6 +601,7 @@ Assets are the different kinds of sensible information that take part in our thr
 <td>
 
     id: cc-data
+
 </td>
 </tr>
 
@@ -588,9 +613,9 @@ Assets are the different kinds of sensible information that take part in our thr
 <td>
 
     name: Credit card data
+
 </td>
 </tr>
-
 
 <tr></tr>
 <tr>
@@ -599,17 +624,16 @@ Assets are the different kinds of sensible information that take part in our thr
 <td>Short description for the asset</td>
 <td>
 
-    description: This is the credit our customer’s card numbers
+    description: This is our customer’s credit card numbers
+
 </td>
 </tr>
-
 
 <tr></tr>
 <tr>
 <td>risk</td>
 <td><a href="#assetrisk-object">AssetRisk object</a></td>
-<td><b>REQUIRED</b> This object contains all the values that describe the different ways the leak of this assert can be 
-harmful</td>
+<td><b>REQUIRED</b> Describes the various (confidentiality, integrity and availability) threats to the asset</td>
 <td></td>
 </tr>
 
@@ -617,12 +641,13 @@ harmful</td>
 <tr>
 <td>attributes</td>
 <td>Map [string, string]</td>
-<td>This is a free map of attributes that complete the description of the asset.</td>
+<td>This is a free-form map of attributes that complete the description of the asset.</td>
 <td>
 
     attributes:
       attr1: value1
       attr2: value2
+
 </td>
 </tr>
 
@@ -657,7 +682,7 @@ assets:
 
 ## AssetRisk object
 
-This object contains all the values that describe the different ways the leak of this assert can be harmful.
+This object describes the different ways in which a compromise of this asset can be harmful.
 
 <table>
 <tr>
@@ -671,10 +696,11 @@ This object contains all the values that describe the different ways the leak of
 <tr>
 <td>confidentiality</td>
 <td>integer</td>
-<td><b>REQUIRED</b> From 0 to 100, how bad it would be to have an attacker see this information?</td>
+<td><b>REQUIRED</b> From 0 to 100. How bad would it be to have an attacker see this information?</td>
 <td>
 
     confidentiality: 50
+
 </td>
 </tr>
 
@@ -682,10 +708,11 @@ This object contains all the values that describe the different ways the leak of
 <tr>
 <td>integrity</td>
 <td>integer</td>
-<td><b>REQUIRED</b> From 0 to 100, how bad it would be to have an attacker modify this information?</td>
+<td><b>REQUIRED</b> From 0 to 100. How bad would it be to have an attacker modify this information?</td>
 <td>
 
     integrity: 50
+
 </td>
 </tr>
 
@@ -693,11 +720,12 @@ This object contains all the values that describe the different ways the leak of
 <tr>
 <td>availability</td>
 <td>integer</td>
-<td><b>REQUIRED</b> From 0 to a 100, how bad would it be to lose this information or have it unaccessible in our system?
+<td><b>REQUIRED</b> From 0 to a 100. How bad would it be to lose this information or have it inaccessible in our system?
 </td>
 <td>
 
     availability: 50
+
 </td>
 </tr>
 
@@ -708,7 +736,8 @@ This object contains all the values that describe the different ways the leak of
 <td>Short explanation on why we have selected the different risk values</td>
 <td>
 
-    comment: We have decided that the values are a 100 for all values since this highly sensitive information
+    comment: We have decided that the values are a 100 for all values since this highly-sensitive information
+
 </td>
 </tr>
 
@@ -731,13 +760,14 @@ Object that describes the relationship between the component and the different a
 <tr>
 <td>processed</td>
 <td>array of strings</td>
-<td>Array of ids that represents the assets that are processed in this component.</td>
+<td>Array of ids that represent the assets that are processed in this component.</td>
 <td>
 
     assets:
       processed:
         - asset1
         - asset2
+
 </td>
 </tr>
 
@@ -745,13 +775,14 @@ Object that describes the relationship between the component and the different a
 <tr>
 <td>stored</td>
 <td>array of strings</td>
-<td>Array of ids that represents the assets that are stored within the described component.</td>
+<td>Array of ids that represent the assets that are stored within the described component.</td>
 <td>
 
     assets:
       stored:
         - asset1
         - asset2
+
 </td>
 </tr>
 
@@ -790,6 +821,7 @@ Components are the different pieces of software / hardware that make our project
 <td>
 
     name: Payments service
+
 </td>
 </tr>
 
@@ -801,6 +833,7 @@ Components are the different pieces of software / hardware that make our project
 <td>
 
     id: payment-service
+
 </td>
 </tr>
 
@@ -811,7 +844,8 @@ Components are the different pieces of software / hardware that make our project
 <td><b>REQUIRED</b> The kind of the described component</td>
 <td>
 
-    type: ec2-instance    
+    type: ec2-instance
+
 </td>
 </tr>
 
@@ -825,6 +859,7 @@ Components are the different pieces of software / hardware that make our project
     tags:
       - web
       - server
+
 </td>
 </tr>
 
@@ -836,6 +871,7 @@ Components are the different pieces of software / hardware that make our project
 <td>
 
     description: This is the server in charge of processing the payments in the platform
+
 </td>
 </tr>
 
@@ -854,7 +890,7 @@ component. It should contain an attribute name stating the component type to avo
 <tr>
 <td>representations</td>
 <td>array of <a href="#representations-object">Representation Element object</a></td>
-<td>Array of the representations on which this component is represented.</td>
+<td>Array of the representations that this component has.</td>
 <td></td>
 </tr>
 
@@ -862,7 +898,7 @@ component. It should contain an attribute name stating the component type to avo
 <tr>
 <td>assets</td>
 <td><a href="#asset-instance-object">Asset instance object</a></td>
-<td>Object that describes the relationship in between the component and the different assets</td>
+<td>Object that describes the relationship between the component and the different assets</td>
 <td></td>
 </tr>
 
@@ -878,12 +914,13 @@ component. It should contain an attribute name stating the component type to avo
 <tr>
 <td>attributes</td>
 <td>Map [string, string]</td>
-<td>This is a free map of attributes that complete the description of the component.</td>
+<td>This is a free-form map of attributes that complete the description of the component.</td>
 <td>
 
     attributes:
       attr1: value1
       attr2: value2
+
 </td>
 </tr>
 
@@ -897,7 +934,7 @@ components:
     id: web-service
     type: web-service
     description: Runs our web application
-    parent: 
+    parent:
       trustZone: private
     tags:
       - tomcat
@@ -947,7 +984,7 @@ components:
     id: class-customerdatabase
     description: Managages customer database
     type: code-class
-    parent: 
+    parent:
       trustZone: private
     representations:
       - representation: application-code
@@ -959,7 +996,7 @@ components:
 
 ## TrustZones object
 
-Trust zones are the different areas on within components are located. They define how trust worthy an area is based on how accessible it is. The more accessible the less trust worthy.
+Trust zones are the different areas within which components are located. They define how trustworthy an area is, based on how accessible it is: the more accessible, the less trustworthy.
 
 <table>
 <tr>
@@ -977,6 +1014,7 @@ Trust zones are the different areas on within components are located. They defin
 <td>
 
     name: Internet
+
 </td>
 </tr>
 
@@ -988,6 +1026,7 @@ Trust zones are the different areas on within components are located. They defin
 <td>
 
     id: internet
+
 </td>
 </tr>
 
@@ -998,12 +1037,13 @@ Trust zones are the different areas on within components are located. They defin
 <td>Short description for the trust zone</td>
 <td>
 
-    description: > 
-      This is the world 
-      wide web accesible 
-      for every one with 
-      an internet 
+    description: >
+      This is the world
+      wide web accesible
+      for every one with
+      an internet
       connection
+
 </td>
 </tr>
 
@@ -1011,8 +1051,7 @@ Trust zones are the different areas on within components are located. They defin
 <tr>
 <td>risk</td>
 <td><a href="#trustzonerisk-object">TrustZoneRisk object</a></td>
-<td><b>REQUIRED</b> This is the object that gathers all the values regarding on the diferents aspects of the trust zone 
-risk</td>
+<td><b>REQUIRED</b> This is the object that describes the different aspects of risk associated with the trust zone</td>
 <td></td>
 </tr>
 
@@ -1021,8 +1060,7 @@ risk</td>
 <td>parent</td>
 <td><a href="#parent-object">Parent object</a></td>
 <td>	
-Unique identifier of the component or trust zone enclosing this trust zone. It should contain an attribute name 
-stating the element type.<br />
+Unique identifier of the component or trust zone enclosing this trust zone. It should contain an attribute name stating the element type.<br />
 A trust zone can have <b>zero or one parent</b>: another component or a trust zone.
 </td>
 <td></td>
@@ -1032,7 +1070,7 @@ A trust zone can have <b>zero or one parent</b>: another component or a trust zo
 <tr>
 <td>representations</td>
 <td>array of <a href="#representationelement-object">Representation Element object</a></td>
-<td></td>
+<td>Array of the representations that this trust zone has</td>
 <td></td>
 </tr>
 
@@ -1040,12 +1078,13 @@ A trust zone can have <b>zero or one parent</b>: another component or a trust zo
 <tr>
 <td>attributes</td>
 <td>Map [string, string]</td>
-<td>This is a free map of attributes that complete the description of the trust zone.</td>
+<td>This is a free-form map of attributes that complete the description of the trust zone.</td>
 <td>
 
     attributes:
       attr1: value1
       attr2: value2
+
 </td>
 </tr>
 
@@ -1072,8 +1111,8 @@ trustzones:
         width: 100
         height: 100
     attributes:
-        attr1: value1
-        attr2: value2
+      attr1: value1
+      attr2: value2
   - name: Private
     id: private
     description: Private trustzone for protected components
@@ -1095,7 +1134,7 @@ trustzones:
 
 ## TrustZoneRisk object
 
-This is the object that gathers all the values regarding on the diferents aspects of the trust zone risk.
+This is the object that describes the different aspects of risk associated with the trust zone.
 
 <table>
 <tr>
@@ -1109,10 +1148,11 @@ This is the object that gathers all the values regarding on the diferents aspect
 <tr>
 <td>trustRating</td>
 <td>integer</td>
-<td><b>REQUIRED</b> Between 0 and 100, how trust worthy is this trust zone</td>
+<td><b>REQUIRED</b> From 0 and 100. How trustworthy is this trust zone?</td>
 <td>
 
     trustRating: 10
+
 </td>
 </tr>
 </table>
@@ -1128,8 +1168,8 @@ risk:
 
 Element that encloses another element. It can be either a trust zone or a component. Currently, we have two supported types of parents:
 
-* trustZone
-* component
+- trustZone
+- component
 
 <table>
 <tr>
@@ -1148,6 +1188,7 @@ Id of the element in which this component is currently enclosed. It can be eithe
 <td>
 
     trustZone: private
+
 </td>
 </tr>
 
@@ -1159,6 +1200,7 @@ Id of the element in which this component is currently enclosed. It can be eithe
 <td>
 
     component: web-server
+
 </td>
 </tr>
 </table>
@@ -1167,12 +1209,12 @@ Id of the element in which this component is currently enclosed. It can be eithe
 #### Example
 
 ```yaml
-parent: 
+parent:
   trustZone: private
 ```
 
 ```yaml
-parent: 
+parent:
   component: web-server
 ```
 
@@ -1196,6 +1238,7 @@ Data flows are the elements that describe the movement of relevant information (
 <td>
 
     name: Credit card reporting
+
 </td>
 </tr>
 
@@ -1203,10 +1246,11 @@ Data flows are the elements that describe the movement of relevant information (
 <tr>
 <td>id</td>
 <td>string</td>
-<td><b>REQUIRED</b> Unique identifier for the dataflow</td>
+<td><b>REQUIRED</b> Unique identifier for the dataflow.</td>
 <td>
 
-    id: credict-card-reporting
+    id: credit-card-reporting
+
 </td>
 </tr>
 
@@ -1218,6 +1262,7 @@ Data flows are the elements that describe the movement of relevant information (
 <td>
 
     description: Credit card information being exchanged in between the web app and the database
+
 </td>
 </tr>
 
@@ -1225,12 +1270,13 @@ Data flows are the elements that describe the movement of relevant information (
 <tr>
 <td>tags</td>
 <td>array of strings</td>
-<td>Array of tags related to the component.</td>
+<td>Array of tags related to the dataflow.</td>
 <td>
 
     tags:
       - http
       - https
+
 </td>
 </tr>
 
@@ -1240,10 +1286,12 @@ Data flows are the elements that describe the movement of relevant information (
 <td>boolean</td>
 <td>States if the information flows both ways.
 
-By default is false.</td>
+By default, it is false.</td>
+
 <td>
 
     bidirectional: true
+
 </td>
 </tr>
 
@@ -1255,6 +1303,7 @@ By default is false.</td>
 <td>
 
     source: web-service
+
 </td>
 </tr>
 
@@ -1266,6 +1315,7 @@ By default is false.</td>
 <td>
 
     destination: psotgress-db
+
 </td>
 </tr>
 
@@ -1273,12 +1323,13 @@ By default is false.</td>
 <tr>
 <td>assets</td>
 <td>array of strings</td>
-<td>Array of assets that are transported by the dataflow</td>
+<td>Array of assets that are transported by the dataflow.</td>
 <td>
 
     assets:
       - cc-data
       - public-info
+
 </td>
 </tr>
 
@@ -1286,7 +1337,7 @@ By default is false.</td>
 <tr>
 <td>threats</td>
 <td>array of <a href="#threat-instance-object">Threat instance object</a></td>
-<td>Array of threats that are related to the current dataflow</td>
+<td>Array of threats that are related to the current dataflow.</td>
 <td></td>
 </tr>
 
@@ -1294,12 +1345,13 @@ By default is false.</td>
 <tr>
 <td>attributes</td>
 <td>Map [string, string]</td>
-<td>This is a free map of attributes that complete the description of the dataflow</td>
+<td>This is a free-form map of attributes that complete the description of the dataflow.</td>
 <td>
 
     attributes:
       attr1: value1
       attr2: value2
+
 </td>
 </tr>
 </table>
@@ -1333,7 +1385,7 @@ dataflows:
 
 ## Threats object
 
-Threats are the undesirable that can occur in our system and that we want to prevent. These are its fields:
+Threats are the undesirable outcomes that can occur in our system and that we want to prevent. These are its fields:
 
 <table>
 <tr>
@@ -1351,6 +1403,7 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <td>
 
     name: Attackers gain unauthorized access to the control of the environment
+
 </td>
 </tr>
 
@@ -1362,6 +1415,7 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <td>
 
     id: LOSS-CONTROL_ENV
+
 </td>
 </tr>
 
@@ -1372,7 +1426,8 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <td>Short description of the threat</td>
 <td>
 
-    description: Attackers could potentially gain unauthorized access to the control of the environment, due to user accounts - or role groups - not being well defined and configured. As a consequence attackers may be able to make changes without root approval.
+    description: Attackers could potentially gain unauthorized access to the control of the environment, due to user accounts - or role groups - not being well-defined and configured. As a consequence, attackers may be able to make changes without root approval.
+
 </td>
 </tr>
 
@@ -1380,12 +1435,13 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <tr>
 <td>categories</td>
 <td>array of strings</td>
-<td>Array of categories that are aplicable to the threat</td>
+<td>Array of categories that are applicable to the threat</td>
 <td>
 
     categories:
       - Spoofing
       - Authentication
+
 </td>
 </tr>
 
@@ -1393,12 +1449,13 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <tr>
 <td>cwes</td>
 <td>array of strings</td>
-<td>Array of CWE identifiers of weaknesses addressed by the threat</td>
+<td>Array of CWE identifiers of weaknesses associated with the threat</td>
 <td>
 
     cwes:
       - CWE-79
       - CWE-787
+
 </td>
 </tr>
 
@@ -1406,7 +1463,7 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <tr>
 <td>risk</td>
 <td><a href="#threatrisk-object">ThreatRisk object</a></td>
-<td><b>REQUIRED</b> This object gathers the values of the different aspects fo the threat risk</td>
+<td><b>REQUIRED</b> This object describes different aspects of risk (likelihood and impact) posed by the threat</td>
 <td></td>
 </tr>
 
@@ -1420,6 +1477,7 @@ Threats are the undesirable that can occur in our system and that we want to pre
     tags:
       - unauthorized-access
       - loss-control
+
 </td>
 </tr>
 
@@ -1427,42 +1485,43 @@ Threats are the undesirable that can occur in our system and that we want to pre
 <tr>
 <td>attributes</td>
 <td>Map [string, string]</td>
-<td>This is a free map of attributes that complete the description of the threat.</td>
+<td>This is a free-form map of attributes that complete the description of the threat.</td>
 <td>
 
     attributes:
       expirationDate: “2021-05-17”
       cmdbId: MyApp123
+
 </td>
 </tr>
 
 </table>
 <br />
 
-#### Example 
+#### Example
 
 ```yaml
 threats:
-- name: Attackers gain unauthorized access to the control of the environment
-  id: LOSS-CONTROL_ENV
-  description: Attackers could potentially gain unauthorized access to the control of the environment, due to user accounts - or role groups - not being well defined and configured. As a consequence attackers may be able to make changes without root approval.
-  categories: 
-    - Spoofing
-    - Tampering
-  cwes:
-    - CWE-79
-    - CWE-787
-  risk:
-    likelihood: 50
-    likelihoodComment: It is reasonable to think this might happen but it requires for the attaketr to have a deep cyprografy knowledge
-    impact: 100
-    impactComment: If this threat becomes a rallity company will strruggle to keep customers and the monetory loss would jeopardise the whole company
-  attributes:
-    expirationDate: 2021-05-17
-    cmdbId: MyApp123
-  tags:
-    - loss-control
-    - environment
+  - name: Attackers gain unauthorized access to the control of the environment
+    id: LOSS-CONTROL_ENV
+    description: Attackers could potentially gain unauthorized access to the control of the environment, due to user accounts - or role groups - not being well defined and configured. As a consequence, attackers may be able to make changes without root approval.
+    categories:
+      - Spoofing
+      - Tampering
+    cwes:
+      - CWE-79
+      - CWE-787
+    risk:
+      likelihood: 50
+      likelihoodComment: It is reasonable to think this might happen but it requires for the attaketr to have a deep cyprografy knowledge
+      impact: 100
+      impactComment: If this threat becomes a rallity company will strruggle to keep customers and the monetory loss would jeopardise the whole company
+    attributes:
+      expirationDate: 2021-05-17
+      cmdbId: MyApp123
+    tags:
+      - loss-control
+      - environment
 ```
 
 ## ThreatRisk object
@@ -1481,10 +1540,11 @@ Risk information for the associated threat.
 <tr>
 <td>likelihood</td>
 <td>integer</td>
-<td><b>REQUIRED</b> From 0 to 100 how likely is this threat of taking place</td>
+<td><b>REQUIRED</b> From 0 to 100. How likely is it that this threat will take place?</td>
 <td>
 
     likelihood: 50
+
 </td>
 </tr>
 
@@ -1492,10 +1552,11 @@ Risk information for the associated threat.
 <tr>
 <td>likelihoodComment</td>
 <td>richText</td>
-<td>Short explanation on why have we selected such value for the likelihood</td>
+<td>Short explanation of why we have selected such a value for the likelihood</td>
 <td>
 
-    likelihoodComment: It is reasonable to think this might happen but it requires for the attacker to have a deep cryptography knowledge
+    likelihoodComment: It is reasonable to think that this might happen, but it requires that the attacker has a deep knowledge of cryptography
+
 </td>
 </tr>
 
@@ -1503,10 +1564,11 @@ Risk information for the associated threat.
 <tr>
 <td>impact</td>
 <td>integer</td>
-<td><b>REQUIRED</b> From 0 to 100 how bad would it be for this threat to take place</td>
+<td><b>REQUIRED</b> From 0 to 100. How bad would it be if this threat took place?</td>
 <td>
 
     impact: 100
+
 </td>
 </tr>
 
@@ -1514,10 +1576,11 @@ Risk information for the associated threat.
 <tr>
 <td>impactComment</td>
 <td>richText</td>
-<td>Short explanation on why we have selected such value for the impact</td>
+<td>Short explanation of why we have selected such a value for the impact</td>
 <td>
 
-    impactComment: If this threat becomes a reality company will struggle to keep customers and the monetary loss would jeopardize the whole company
+    impactComment: If this threat becomes a reality, the company will struggle to keep customers and the monetary loss would jeopardize the business
+
 </td>
 </tr>
 
@@ -1528,15 +1591,15 @@ Risk information for the associated threat.
 
 ```yaml
 risk:
-    likelihood: 50
-    likelihoodComment: It is reasonable to think this might happen but it requires for the attaketr to have a deep cyprografy knowledge
-    impact: 100
-    impactComment: If this threat becomes a rallity company will strruggle to keep customers and the monetory loss would jeopardise the whole company
+  likelihood: 50
+  likelihoodComment: It is reasonable to think that this might happen, but it requires that the attacker has a deep knowledge of cryptography
+  impact: 100
+  impactComment: If this threat becomes a reality, the company will struggle to keep customers and the monetary loss would jeopardize the business
 ```
 
 ## Threat instance object
 
-This object stores a reference to a threat and add addicional data enclosed in a particular scope.
+This object stores a reference to a threat and add additional data enclosed in a particular scope.
 
 <table>
 <tr>
@@ -1555,6 +1618,7 @@ threats.</td>
 <td>
 
      threat: 22724267-be7e-44c0-8b1f-d7d33e9a34ec
+
 </td>
 </tr>
 
@@ -1562,10 +1626,11 @@ threats.</td>
 <tr>
 <td>state</td>
 <td>string</td>
-<td><b>REQUIRED</b> Describes the state on which the threat is currently.</td>
+<td><b>REQUIRED</b> Describes the state in which the threat currently is.</td>
 <td>
 
     state: mitigated
+
 </td>
 </tr>
 
@@ -1573,7 +1638,7 @@ threats.</td>
 <tr>
 <td>mitigations</td>
 <td>array of <a href="#mitigation-instance-object">Mitigation instance object</a></td>
-<td>Array of mitigations that can prevent the threat of taking place.</td>
+<td>Array of mitigation that can prevent the threat from taking place.</td>
 <td></td>
 </tr>
 </table>
@@ -1591,7 +1656,7 @@ threats:
 
 ## Mitigations object
 
-Mitigations are the actions we can take in other to prevent a threat of taking place.
+Mitigations are the actions that we can take (or controls that we can put in place) in order to prevent a threat from taking place.
 
 <table>
 <tr>
@@ -1609,6 +1674,7 @@ Mitigations are the actions we can take in other to prevent a threat of taking p
 <td>
 
     name: Use strong passwords
+
 </td>
 </tr>
 
@@ -1620,6 +1686,7 @@ Mitigations are the actions we can take in other to prevent a threat of taking p
 <td>
 
     id: use-strong-passwords
+
 </td>
 </tr>
 
@@ -1627,10 +1694,11 @@ Mitigations are the actions we can take in other to prevent a threat of taking p
 <tr>
 <td>description</td>
 <td>richText</td>
-<td>Short descriptions on how to implement the mitigation</td>
+<td>Short descriptions of how to implement the mitigation</td>
 <td>
 
-    description: Force users to use passwords over 10 characters containing letters numbers and symbols
+    description: Force users to use passwords over 10 characters, containing letters numbers and symbols
+
 </td>
 </tr>
 
@@ -1638,10 +1706,11 @@ Mitigations are the actions we can take in other to prevent a threat of taking p
 <tr>
 <td>riskReduction</td>
 <td>integer</td>
-<td><b>REQUIRED</b> Form 0 to 100, how much will the threat risk decrease once this mitigation is implemented</td>
+<td><b>REQUIRED</b> From 0 to 100. How much will the threat risk decrease once this mitigation is implemented?</td>
 <td>
 
     riskReduction: 75
+
 </td>
 </tr>
 
@@ -1651,12 +1720,13 @@ Mitigations are the actions we can take in other to prevent a threat of taking p
 <td>	
 Map [string, string]</td>
 <td>	
-This is a free list of attributes that complete the description of the threat.</td>
+This is a free-form list of attributes that complete the description of the threat.</td>
 <td>
 
     attributes:
       standard: OWASP-ASVS
       cmdbId: MyApp123
+
 </td>
 </tr>
 
@@ -1683,7 +1753,7 @@ mitigations:
 
 ## Mitigation instance object
 
-Mitigation that can prevent the threat of taking place.
+Mitigation that can prevent the threat from taking place.
 
 <table>
 <tr>
@@ -1701,6 +1771,7 @@ Mitigation that can prevent the threat of taking place.
 <td>
 
     mitigation: fd6136f4-e2ff-11eb-ba80-0242ac130004
+
 </td>
 </tr>
 
@@ -1712,6 +1783,7 @@ Mitigation that can prevent the threat of taking place.
 <td>
 
     state: implemented
+
 </td>
 </tr>
 
@@ -1728,7 +1800,7 @@ mitigations:
 
 ## Repository object
 
-Gathers all the info concerning the Repository where the referenced code is located.
+Contains information about the Repository where the referenced code is located.
 
 <table>
 <tr>
@@ -1746,6 +1818,7 @@ Gathers all the info concerning the Repository where the referenced code is loca
 <td>
 
     https://github.com/my-project
+
 </td>
 </tr>
 </table>
@@ -1755,7 +1828,7 @@ Gathers all the info concerning the Repository where the referenced code is loca
 
 ```yaml
 repository:
-        url: https://github.com/my-project
+  url: https://github.com/my-project
 ```
 
 ## Size object
@@ -1778,6 +1851,7 @@ Represents a very basic information about a size of an element.
 <td>
 
     width: 400
+
 </td>
 </tr>
 
@@ -1789,13 +1863,14 @@ Represents a very basic information about a size of an element.
 <td>
 
     height: 300
+
 </td>
 </tr>
 </table>
 
 ### Position object
 
-Represents a very basic information about a position of an element.
+Represents very basic information about the position of an element.
 
 <table>
 <tr>
@@ -1809,10 +1884,11 @@ Represents a very basic information about a position of an element.
 <tr>
 <td>x</td>
 <td>integer</td>
-<td><b>REQUIRED</b> This is the position of the element in te X axis in units</td>
+<td><b>REQUIRED</b> This is the position of the element in the X-axis in units</td>
 <td>
 
     x: 200
+
 </td>
 </tr>
 
@@ -1820,10 +1896,11 @@ Represents a very basic information about a position of an element.
 <tr>
 <td>y</td>
 <td>integer</td>
-<td><b>REQUIRED</b> This is the position of the element in te Y axis in units</td>
+<td><b>REQUIRED</b> This is the position of the element in the Y-axis in units</td>
 <td>
 
     y: 100
+
 </td>
 </tr>
 </table>
