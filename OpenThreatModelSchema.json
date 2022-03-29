@@ -1,0 +1,888 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/OpenThreatModel",
+    "title": "Open Threat Model",
+    "description": "A Schema Definition for Open Threat Model https://github.com/iriusrisk/OpenThreatModel",
+    "definitions": {
+        "OpenThreatModel": {
+            "type": "object",
+            "additionalProperties": false,
+            "title": "Open Threat Model",
+            "properties": {
+                "otmVersion": {
+                    "type": "string",
+                    "description": "This field states the OTM semantic version used in the current file. It is an important field in order to ensure backwards compatibility.",
+                    "default": "0.1.0"
+                },
+                "project": {
+                    "$ref": "#/definitions/Project",
+                    "description": "Project represents the entity within which all the other elements are grouped. It's the unit of work."
+                },
+                "representations": {
+                    "type": "array",
+                    "description": "Representations define different ways in which the project may be represented. Representation is an abstract concept and there might be several implementations.",
+                    "items": {
+                        "$ref": "#/definitions/Representation"
+                    }
+                },
+                "assets": {
+                    "type": "array",
+                    "description": "Assets are the different kinds of sensible information that take part in our threat model.",
+                    "items": {
+                        "$ref": "#/definitions/Asset"
+                    }
+                },
+                "components": {
+                    "type": "array",
+                    "description": "Components are the different pieces of software / hardware that make up our project.",
+                    "items": {
+                        "$ref": "#/definitions/Component"
+                    }
+                },
+                "dataflows": {
+                    "type": "array",
+                    "description": "Data flows are the elements that describe the movement of relevant information (assets) across our architecture.",
+                    "items": {
+                        "$ref": "#/definitions/Dataflow"
+                    }
+                },
+                "trustZones": {
+                    "type": "array",
+                    "description": "Trust zones are the different areas within which components are located. They define how trustworthy an area is, based on how accessible it is: the more accessible, the less trustworthy.",
+                    "items": {
+                        "$ref": "#/definitions/TrustZone"
+                    }
+                },
+                "threats": {
+                    "type": "array",
+                    "description": "Threats are the undesirable outcomes that can occur in our system and that we want to prevent.",
+                    "items": {
+                        "$ref": "#/definitions/OpenThreatModelThreat"
+                    }
+                },
+                "mitigations": {
+                    "type": "array",
+                    "description": "Mitigations are the actions that we can take (or controls that we can put in place) in order to prevent a threat from taking place.",
+                    "items": {
+                        "$ref": "#/definitions/OpenThreatModelMitigation"
+                    }
+                }
+            },
+            "required": [
+                "otmVersion",
+                "project"
+            ]
+        },
+        "Asset": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the asset"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the defined assets"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description of the asset"
+                },
+                "risk": {
+                    "$ref": "#/definitions/AssetRisk",
+                    "description": "Describes the various (confidentiality, integrity and availability) threats to the asset"
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes",
+                    "description": "This is a free-form map of attributes that complete the description of the asset"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "risk"
+            ],
+            "title": "Asset"
+        },
+        "Attributes": {
+            "type": "object",
+            "title": "Free-form attributes"
+        },
+        "AssetRisk": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "confidentiality": {
+                    "type": "integer",
+                    "description": "From 0 to 100. How bad would it be to have an attacker see this information?",
+                    "examples": [
+                        "confidentiality: 50"
+                    ]
+                },
+                "integrity": {
+                    "type": "integer",
+                    "description": "From 0 to 100. How bad would it be to have an attacker modify this information?",
+                    "examples": [
+                        "integrity: 50"
+                    ]
+                },
+                "availability": {
+                    "type": "integer",
+                    "description": "From 0 to a 100. How bad would it be to lose this information or have it inaccessible in our system?",
+                    "examples": [
+                        "availability: 50"
+                    ]
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Short explanation on why we have selected the different risk values",
+                    "examples": [
+                        "comment: We have decided that the values are a 100 for all values since this highly sensitive information"
+                    ]
+                }
+            },
+            "required": [
+                "availability",
+                "confidentiality",
+                "integrity"
+            ],
+            "title": "Asset Risk"
+        },
+        "Component": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name for the defined component",
+                    "examples": [
+                        "name: Payments service"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the component",
+                    "examples": [
+                        "id: payment-service"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The kind of the described component",
+                    "examples": [
+                        "type: ec2-instance"
+                    ]
+                },
+                "tags": {
+                    "type": "array",
+                    "description": "List of tags related to the component",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description for the component"
+                },
+                "parent": {
+                    "$ref": "#/definitions/Parent",
+                    "description": "Element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity. A component must have just one parent: another component or a trust zone"
+                },
+                "representations": {
+                    "type": "array",
+                    "description": "Array of the representations that this component has",
+                    "items": {
+                        "$ref": "#/definitions/RepresentationElement"
+                    }
+                },
+                "assets": {
+                    "$ref": "#/definitions/Assets",
+                    "description": "Object that describes the relationship between the component and the different assets"
+                },
+                "threats": {
+                    "type": "array",
+                    "description": "Array of threats that are related to the current component",
+                    "items": {
+                        "$ref": "#/definitions/ComponentThreat"
+                    }
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "parent",
+                "type"
+            ],
+            "title": "Component"
+        },
+        "Assets": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "processed": {
+                    "type": "array",
+                    "description": "Array of ids that represent the assets that are processed in this component",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "stored": {
+                    "type": "array",
+                    "description": "Array of ids that represent the assets that are stored in this component",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "processed",
+                "stored"
+            ],
+            "title": "Assets"
+        },
+        "Parent": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "trustZone": {
+                    "type": "string",
+                    "description": "Id of the element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity",
+                    "examples": [
+                        "trustZone: private"
+                    ]
+                },
+                "component": {
+                    "type": "string",
+                    "description": "Id of the element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity",
+                    "examples": [
+                        "component: web-server"
+                    ]
+                }
+            },
+            "maxProperties": 1,
+            "title": "Parent"
+        },
+        "Representation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name for the representation",
+                    "examples": [
+                        "name: Architecture diagram"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the representation",
+                    "examples": [
+                        "id: architecture-diagram-id"
+                    ]
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description of the representation content and usage",
+                    "examples": [
+                        "description: This is a diagram of the project's architecture"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "diagram",
+                        "code"
+                    ],
+                    "description": "Type of representation",
+                    "examples": [
+                        "diagram"
+                    ]
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes",
+                    "description": "This is a free-form list of attributes that complete the description of the representation"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "type"
+            ],
+            "title": "Representation"
+        },
+        "RepresentationElement": {
+            "type": "object",
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/DiagramRepresentation"
+                },
+                {
+                    "$ref": "#/definitions/CodeRepresentation"
+                }
+            ],
+            "title": "Representation"
+        },
+        "DiagramRepresentation": {
+            "type": "object",
+            "properties": {
+                "representation": {
+                    "type": "string",
+                    "description": "ID of the representation on which this element is represented",
+                    "examples": [
+                        "architecture-diagram"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name for the representation element",
+                    "examples": [
+                        "Component Box"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the current representation instance",
+                    "examples": [
+                        "component-box-id"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "diagram"
+                    ],
+                    "description": "Type of representation",
+                    "examples": [
+                        "diagram"
+                    ]
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes"
+                },
+                "position": {
+                    "$ref": "#/definitions/Position",
+                    "description": "This node contains all the information about the location of the element within the diagram"
+                },
+                "size": {
+                    "$ref": "#/definitions/Size",
+                    "description": "This node contains all the information regarding the size of the shape"
+                }
+            },
+            "required": [
+                "representation",
+                "name",
+                "id",
+                "position",
+                "size"
+            ],
+            "title": "Diagram Representation"
+        },
+        "CodeRepresentation": {
+            "type": "object",
+            "properties": {
+                "representation": {
+                    "type": "string",
+                    "description": "ID of the representation on which this element is represented",
+                    "examples": [
+                        "code-repository"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name for the representation element",
+                    "examples": [
+                        "Example Class"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the current representation instance",
+                    "examples": [
+                        "org.example.class"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "code"
+                    ],
+                    "description": "Type of representation",
+                    "examples": [
+                        "code"
+                    ]
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes"
+                },
+                "file": {
+                    "type": "string",
+                    "description": "File where the representative code is located"
+                },
+                "line": {
+                    "type": "integer",
+                    "description": "Number of the code line that represents the element"
+                },
+                "codeSnippet": {
+                    "type": "string",
+                    "description": "Code that represents the element"
+                }
+            },
+            "required": [
+                "id",
+                "representation"
+            ],
+            "title": "Code Representation"
+        },
+        "Position": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "x",
+                "y"
+            ],
+            "title": "Position"
+        },
+        "Repository": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "title": "Repository"
+        },
+        "Size": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "width": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "height",
+                "width"
+            ],
+            "title": "Size"
+        },
+        "ComponentThreat": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "threat": {
+                    "type": "string",
+                    "description": "Unique identifier of the related threat. It should be one of the threats described in the root node threats"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "Describes the state in which the threat currently is"
+                },
+                "mitigations": {
+                    "type": "array",
+                    "description": "Array of mitigations that can prevent the threat of taking place",
+                    "items": {
+                        "$ref": "#/definitions/ThreatMitigation"
+                    }
+                }
+            },
+            "required": [
+                "mitigations",
+                "state",
+                "threat"
+            ],
+            "title": "Component Threat"
+        },
+        "ThreatMitigation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "mitigation": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mitigation",
+                "state"
+            ],
+            "title": "Threat Mitigation"
+        },
+        "Dataflow": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name for the defined dataflow",
+                    "examples": [
+                        "Credit card reporting"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the dataflow",
+                    "examples": [
+                        "credict-card-reporting"
+                    ]
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description of the dataflow content and usage",
+                    "examples": [
+                        "Credit card information being exchanged in between the web app and the database"
+                    ]
+                },
+                "tags": {
+                    "type": "array",
+                    "description": "Array of tags related to the dataflow",
+                    "examples": [
+                        "https"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "bidirectional": {
+                    "type": "boolean",
+                    "description": "States if the information flows both ways. By default, it is false",
+                    "examples": [
+                        true
+                    ]
+                },
+                "source": {
+                    "type": "string",
+                    "description": "Unique identifier for the source component of the dataflow",
+                    "examples": [
+                        "web-service"
+                    ]
+                },
+                "destination": {
+                    "type": "string",
+                    "description": "Unique identifier for the destination component of the dataflow",
+                    "examples": [
+                        "postgres-db"
+                    ]
+                },
+                "assets": {
+                    "type": "array",
+                    "description": "Array of assets that are transported by the dataflow",
+                    "examples": [
+                        "cc-data"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "threats": {
+                    "type": "array",
+                    "description": "Array of threats that are related to the current dataflow",
+                    "items": {
+                        "$ref": "#/definitions/ComponentThreat"
+                    }
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes",
+                    "description": "This is a free-form map of attributes that complete the description of the dataflow"
+                }
+            },
+            "required": [
+                "destination",
+                "id",
+                "name",
+                "source"
+            ],
+            "title": "Dataflow"
+        },
+        "OpenThreatModelMitigation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name for the mitigation",
+                    "examples": [
+                        "Use strong passwords"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the mitigation",
+                    "examples": [
+                        "use-strong-passwords"
+                    ]
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short descriptions of how to implement the mitigation",
+                    "examples": [
+                        "Force users to use passwords over 10 characters containing letters numbers and symbols"
+                    ]
+                },
+                "riskReduction": {
+                    "type": "integer",
+                    "description": "From 0 to 100. How much will the threat risk decrease once this mitigation is implemented?"
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes",
+                    "description": "This is a free list of attributes that complete the description of the mitigation"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "riskReduction"
+            ],
+            "title": "Mitigations"
+        },
+        "Project": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the project"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the project"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description for the project"
+                },
+                "owner": {
+                    "type": "string",
+                    "description": "Name of the project's owner. This is the person responsible for the project"
+                },
+                "ownerContact": {
+                    "type": "string",
+                    "description": "Project's owner contact email"
+                },
+                "tags": {
+                    "type": "array",
+                    "description": "Array of labels to tag the project",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "attributes": {
+                    "description": "This is a free-form map of attributes that complete the information about the project",
+                    "$ref": "#/definitions/Attributes"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Project"
+        },
+        "OpenThreatModelThreat": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "This is the name for the threat",
+                    "examples": [
+                        "Attackers gain unauthorized access to the control of the environment"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the threat",
+                    "examples": [
+                        "LOSS-CONTROL_ENV"
+                    ]
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description for the threat",
+                    "examples": [
+                        "Attackers could potentially gain unauthorized access to the control of the environment, due to user accounts - or role groups - not being well-defined and configured. As a consequence attackers may be able to make changes without root approval."
+                    ]
+                },
+                "categories": {
+                    "type": "array",
+                    "description": "Array of categories that are applicable to the threat",
+                    "examples": [
+                        "Spoofing"
+                    ],
+                    "enum": [
+                        "Spoofing",
+                        "Tampering",
+                        "Repudiation",
+                        "Information Disclosure",
+                        "Denial of Service",
+                        "Elevation of Privilege"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cwes": {
+                    "type": "array",
+                    "description": "Array of CWE identifiers of weaknesses associated with the threat",
+                    "examples": [
+                        "CWE-79"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "risk": {
+                    "$ref": "#/definitions/ThreatRisk",
+                    "description": "This object describes different aspects of risk (likelihood and impact) posed by the threat"
+                },
+                "tags": {
+                    "type": "array",
+                    "description": "Array of tags related to the threat",
+                    "examples": [
+                        "unauthorized-access"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes",
+                    "description": "This is a free-form map of attributes that complete the description of the threat"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "risk"
+            ],
+            "title": "Threat"
+        },
+        "ThreatRisk": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "likelihood": {
+                    "type": "integer",
+                    "description": "From 0 to 100. How likely is it that this threat will take place?",
+                    "examples": [
+                        50
+                    ]
+                },
+                "likelihoodComment": {
+                    "type": "string",
+                    "description": "Short explanation of why we have selected such a value for the likelihood",
+                    "examples": [
+                        "It is reasonable to think that this might happen, but it requires for the attacker to have a deep knowledge of cryptography"
+                    ]
+                },
+                "impact": {
+                    "type": "integer",
+                    "description": "From 0 to 100. How bad would it be if this threat took place?",
+                    "examples": [
+                        100
+                    ]
+                },
+                "impactComment": {
+                    "type": "string",
+                    "description": "Short explanation of why we have selected such a value for the impact",
+                    "examples": [
+                        "It is reasonable to think that this might happen, but it requires for the attacker to have a deep knowledge of cryptography"
+                    ]
+                }
+            },
+            "required": [
+                "impact",
+                "likelihood"
+            ],
+            "title": "Threat Risk"
+        },
+        "TrustZone": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name for the defined trust zone",
+                    "examples": [
+                        "Internet"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the trust zone",
+                    "examples": [
+                        "internet"
+                    ]
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Short description for the trust zone",
+                    "examples": [
+                        "This is the world wide web accesible to every one with an Internet connection"
+                    ]
+                },
+                "risk": {
+                    "$ref": "#/definitions/TrustZoneRisk",
+                    "description": "This is the object that describes the different aspects of risk associated with the trust zone"
+                },
+                "parent": {
+                    "$ref": "#/definitions/Parent",
+                    "description": "Unique identifier of the component or trust zone enclosing this trust zone. It should contain an attribute name stating the element type. A trust zone can have zero or one parent: another component or a trust zone"
+                },
+                "representations": {
+                    "type": "array",
+                    "description": "Array of the representations that this trust zone has",
+                    "items": {
+                        "$ref": "#/definitions/RepresentationElement"
+                    }
+                },
+                "attributes": {
+                    "$ref": "#/definitions/Attributes",
+                    "description": "This is a free-form map of attributes that complete the description of the trust zone"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "risk"
+            ],
+            "title": "Trust Zone"
+        },
+        "TrustZoneRisk": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "trustRating": {
+                    "type": "integer",
+                    "description": "Between 0 and 100. How trustworthy is this trust zone?",
+                    "examples": [
+                        10
+                    ]
+                }
+            },
+            "required": [
+                "trustRating"
+            ],
+            "title": "Trust Zone Risk"
+        }
+    }
+}
