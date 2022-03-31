@@ -268,27 +268,68 @@
         },
         "Representation": {
             "type": "object",
-            "additionalProperties": false,
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "diagram"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "size": {
+                                "$ref": "#/definitions/Size",
+                                "description": "This contains the information regarding the diagram size"
+                            }
+                        },
+                        "required": [
+                            "size"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "code"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "repository": {
+                                "$ref": "#/definitions/Repository",
+                                "description": "Contains information about the repository: where the referenced code is located"
+                            }
+                        },
+                        "required": [
+                            "repository"
+                        ]
+                    }
+                }
+            ],
             "properties": {
                 "name": {
                     "type": "string",
                     "description": "Name for the representation",
                     "examples": [
-                        "name: Architecture diagram"
+                        "Architecture diagram"
                     ]
                 },
                 "id": {
                     "type": "string",
                     "description": "Unique identifier for the representation",
                     "examples": [
-                        "id: architecture-diagram-id"
+                        "architecture-diagram-id"
                     ]
                 },
                 "description": {
                     "type": "string",
                     "description": "Short description of the representation content and usage",
                     "examples": [
-                        "description: This is a diagram of the project's architecture"
+                        "This is a diagram of the project's architecture"
                     ]
                 },
                 "type": {
