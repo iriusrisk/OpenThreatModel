@@ -769,16 +769,17 @@
                     "examples": [
                         "Spoofing"
                     ],
-                    "enum": [
-                        "Spoofing",
-                        "Tampering",
-                        "Repudiation",
-                        "Information Disclosure",
-                        "Denial of Service",
-                        "Elevation of Privilege"
-                    ],
+                    "uniqueItems": true,
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "Spoofing",
+                            "Tampering",
+                            "Repudiation",
+                            "Information Disclosure",
+                            "Denial of Service",
+                            "Elevation of Privilege"
+                        ]
                     }
                 },
                 "cwes": {
