@@ -117,21 +117,21 @@
                     "type": "integer",
                     "description": "From 0 to 100. How bad would it be to have an attacker see this information?",
                     "examples": [
-                        "confidentiality: 50"
+                        50
                     ]
                 },
                 "integrity": {
                     "type": "integer",
                     "description": "From 0 to 100. How bad would it be to have an attacker modify this information?",
                     "examples": [
-                        "integrity: 50"
+                        50
                     ]
                 },
                 "availability": {
                     "type": "integer",
                     "description": "From 0 to a 100. How bad would it be to lose this information or have it inaccessible in our system?",
                     "examples": [
-                        "availability: 50"
+                        50
                     ]
                 },
                 "comment": {
@@ -157,21 +157,21 @@
                     "type": "string",
                     "description": "Name for the defined component",
                     "examples": [
-                        "name: Payments service"
+                        "Payments service"
                     ]
                 },
                 "id": {
                     "type": "string",
                     "description": "Unique identifier for the component",
                     "examples": [
-                        "id: payment-service"
+                        "payment-service"
                     ]
                 },
                 "type": {
                     "type": "string",
                     "description": "The kind of the described component",
                     "examples": [
-                        "type: ec2-instance"
+                        "ec2-instance"
                     ]
                 },
                 "tags": {
@@ -252,14 +252,14 @@
                     "type": "string",
                     "description": "Id of the element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity",
                     "examples": [
-                        "trustZone: private"
+                        "private"
                     ]
                 },
                 "component": {
                     "type": "string",
                     "description": "Id of the element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity",
                     "examples": [
-                        "component: web-server"
+                        "web-server"
                     ]
                 }
             },
