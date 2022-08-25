@@ -879,9 +879,12 @@ Components are the different pieces of software / hardware that make our project
 <tr>
 <td>parent</td>
 <td><a href="#parent-object">Parent object</a></td>
-<td><b>REQUIRED</b> Element in which this component is currently enclosed. It can be either a trust zone or another 
-component. It should contain an attribute name stating the component type to avoid ambiguity.
-<br/>A component must have just <b>one parent</b>: another component or a trust zone.
+<td><b>REQUIRED</b> This object describes the parent element in which this component is currently enclosed. It contains the unique identifier and the type of the parent element.
+
+<br /> A component must have just <b>one parent</b>: another component or a trust zone.<br/>
+<br /> The type of a the parent could be component or trust zone.<br/>
+
+
 </td>
 <td></td>
 </tr>
@@ -1059,9 +1062,13 @@ Trust zones are the different areas within which components are located. They de
 <tr>
 <td>parent</td>
 <td><a href="#parent-object">Parent object</a></td>
-<td>	
-Unique identifier of the component or trust zone enclosing this trust zone. It should contain an attribute name stating the element type.<br />
-A trust zone can have <b>zero or one parent</b>: another component or a trust zone.
+
+</td>
+<td>This object describes the parent element in which this trust zone is currently enclosed. It contains the unique identifier and the type of the parent element.<br/>
+
+<br /> A trust zone can have <b>zero or one parent</b><br/>
+<br /> The type of a the parent could be component or trust zone.<br/>
+
 </td>
 <td></td>
 </tr>
@@ -1166,7 +1173,7 @@ risk:
 
 ## Parent object
 
-Element that encloses another element. It can be either a trust zone or a component. Currently, we have two supported types of parents:
+A refernece to the enclosing element. It can be either a trust zone or a component. Currently, we have two supported types of parents:
 
 - trustZone
 - component
@@ -1181,25 +1188,25 @@ Element that encloses another element. It can be either a trust zone or a compon
 
 <tr></tr>
 <tr>
-<td>trustZone</td>
+<td>id</td>
 <td>string</td>
 <td>	
-Id of the element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity</td>
+Id of the element in which this component is currently enclosed.</td>
 <td>
 
-    trustZone: private
+    id: private
 
 </td>
 </tr>
 
 <tr></tr>
 <tr>
-<td>component</td>
+<td>type</td>
 <td>string</td>
-<td>Id of the element in which this component is currently enclosed. It can be either a trust zone or another component. It should contain an attribute name stating the component type to avoid ambiguity</td>
+<td>Type of the element in which this component is currently enclosed. It can be either a trust zone or another component.</td>
 <td>
 
-    component: web-server
+    type: trustZone
 
 </td>
 </tr>
@@ -1210,12 +1217,14 @@ Id of the element in which this component is currently enclosed. It can be eithe
 
 ```yaml
 parent:
-  trustZone: private
+  id: private
+  type: trustZone
 ```
 
 ```yaml
 parent:
-  component: web-server
+  id: web-server
+  type: component
 ```
 
 ## Dataflows object
