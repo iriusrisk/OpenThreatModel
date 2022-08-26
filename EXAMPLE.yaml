@@ -48,7 +48,8 @@ components:
     id: web-service
     description: Runs our web application
     parent:
-      trustZone: private
+        id: private
+        type: trustZone
     type: web-service
     tags:
       - tomcat
@@ -78,7 +79,8 @@ components:
     id: customer-database
     description: Postgres database
     parent:
-      trustZone: private
+        id: private
+        type: trustZone
     type: database
     tags:
       - postgres
@@ -97,7 +99,8 @@ components:
     description: Managages customer database
     type: code-class
     parent:
-      trustZone: private
+        id: private
+        type: trustZone
     representations:
       - representation: application-code
         id: data abse class
@@ -155,7 +158,8 @@ trustZones:
     risk:
       trustRating: 100
     parent:
-      trustZone: internet
+        id: private
+        type: trustZone
     representations:
       - representation: architecture-diagram
         id: private-box-shape
