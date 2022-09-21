@@ -633,7 +633,7 @@ Assets are the different kinds of sensible information that take part in our thr
 <tr>
 <td>risk</td>
 <td><a href="#assetrisk-object">AssetRisk object</a></td>
-<td><b>REQUIRED</b> Describes the various (confidentiality, integrity and availability) threats to the asset</td>
+<td><b>REQUIRED</b> AssetRisk influences impact with regard to a threat.</td>
 <td></td>
 </tr>
 
@@ -682,7 +682,12 @@ assets:
 
 ## AssetRisk object
 
-This object describes the different ways in which a compromise of this asset can be harmful.
+AssetRisk influences impact with regard to a threat.
+
+Those values are passed through OTM into the IR rules engine which performs the calculation for inherent risk.
+
+More information - [https://support.iriusrisk.com/hc/en-us/articles/4412644787345-How-is-inherent-risk-calculated-](https://support.iriusrisk.com/hc/en-us/articles/4412644787345-How-is-inherent-risk-calculated-)
+
 
 <table>
 <tr>
