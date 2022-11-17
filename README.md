@@ -188,6 +188,7 @@ These are the currently supported representation types:
 
 - `diagram`
 - `code`
+- `threat-model`
 
 Each representation has these fields:
 
@@ -344,16 +345,35 @@ representations:
       framework: spring
 ```
 
+### Threat-Model
+
+Represents a threat model.
+
+Under the type “threat-model“ we have no extra fields.
+
+#### Example
+
+```yaml
+representations:
+  - name: Architecture Threat Model
+    id: architecture-threat-model
+    type: threat-model
+    attributes:
+      source: Microsoft Threat Model
+      template: custom
+```
+
 ## RepresentationElement object
 
 The representation element stated how an element is represented with the available representations.
 
-In the current version we support two types of representation types as was mentioned here [OTM version 0.1.0 | Representations-object](#representations-object):
+In the current version we support three types of representation types as was mentioned here [OTM version 0.1.0 | Representations-object](#representations-object):
 
 - diagram
 - code
+- threat-model
 
-Therefore, there can be also two types of representation instances:
+Therefore, there can be also three types of representation instances:
 
 ### Representation element for diagram
 
@@ -580,6 +600,81 @@ representations:
     }
   attributes:
     source: sonar
+    author: John Doe
+```
+
+### Representation element for threat-model
+
+Represents an element of a threat model.
+
+<table>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+
+<tr></tr>
+<tr>
+<td>representation</td>
+<td>string</td>
+<td><b>REQUIRED</b> Id of the representation on which this element is represented</td>
+<td>
+
+    representation: architecture-threat-model
+
+</td>
+</tr>
+
+<tr></tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name for the representation element.</td>
+<td>
+
+    name: Threat model representation
+
+</td>
+</tr>
+
+<tr></tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td><b>REQUIRED</b> Unique identifier of the current representation instance</td>
+<td>
+
+    id: threat-model-representation-id
+
+</td>
+</tr>
+
+<tr></tr>
+<tr>
+<td>attributes</td>
+<td>Map &lt;string, string&gt;</td>
+<td>This is a free-form list of attributes that complete the description of the representation.</td>
+<td>
+
+    attributes:
+      author: John Doe
+
+</td>
+</tr>
+
+</table>
+<br/>
+
+#### Example
+
+```yaml
+representations:
+  representation: architecture-threat-model
+  id: threat-model-representation-id
+  name: Threat model representation
+  attributes:
     author: John Doe
 ```
 
