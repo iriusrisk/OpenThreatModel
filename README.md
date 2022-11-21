@@ -1132,6 +1132,18 @@ Trust zones are the different areas within which components are located. They de
 
 <tr></tr>
 <tr>
+<td>type</td>
+<td>string</td>
+<td><b>REQUIRED</b> Type for the trust zone</td>
+<td>
+
+    type: public-cloud
+
+</td>
+</tr>
+
+<tr></tr>
+<tr>
 <td>description</td>
 <td>richText</td>
 <td>Short description for the trust zone</td>
