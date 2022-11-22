@@ -135,7 +135,8 @@ dataflows:
 
 trustZones:
   - name: Internet
-    id: internet
+    id: 730df42e-69a4-11ed-bd69-9b318e4f98c5
+    type: internet
     description: This is the internet trust zone
     risk:
       trustRating: 20
@@ -150,7 +151,8 @@ trustZones:
           height: 100
     attributes:
   - name: Private
-    id: private
+    id: 3ae9b5de-69b2-11ed-8c2d-e7d4579196f4
+    type: private
     description: Private trustzone for protected components
     risk:
       trustRating: 100
