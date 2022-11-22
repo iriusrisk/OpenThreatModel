@@ -1125,7 +1125,7 @@ Trust zones are the different areas within which components are located. They de
 <td><b>REQUIRED</b> Unique identifier for the trust zone</td>
 <td>
 
-    id: internet
+    id: 730df42e-69a4-11ed-bd69-9b318e4f98c5
 
 </td>
 </tr>
@@ -1137,7 +1137,7 @@ Trust zones are the different areas within which components are located. They de
 <td><b>REQUIRED</b> Type for the trust zone</td>
 <td>
 
-    type: public-cloud
+    type: internet
 
 </td>
 </tr>
@@ -1208,7 +1208,8 @@ A trust zone can have <b>zero or one parent</b>: another component or a trust zo
 ```yaml
 trustzones:
   - name: Internet
-    id: internet
+    id: 730df42e-69a4-11ed-bd69-9b318e4f98c5
+    type: internet
     description: This is the internet trust zone
     risk:
       trustRating: 20
@@ -1226,7 +1227,8 @@ trustzones:
       attr1: value1
       attr2: value2
   - name: Private
-    id: private
+    id: 3ae9b5de-69b2-11ed-8c2d-e7d4579196f4
+    type: private
     description: Private trustzone for protected components
     risk:
       trustRating: 15
