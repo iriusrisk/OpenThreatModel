@@ -7,7 +7,7 @@ data exchange format about threat models, it was rethought and planned as a futu
 standard. Due to that, it's also focused on collaboration, especially suitable to continuous community revision of the standard.
 
 ## Getting started
-All needed information related with the project can be found on its [documentation page](https://github.com/iriusrisk/OpenThreatModel),
+All needed information related with the project can be found on its [documentation page](https://github.com/iriusrisk/OpenThreatModel).
 
 ### Submit changes
 For best integration and collaboration between contributors, the [GitHub guide for contributing to projects](https://docs.github.com/en/get-started/quickstart/contributing-to-projects)
@@ -18,10 +18,10 @@ will be used. The summarized steps would be:
 3. Create a Pull Request (PR) from the forked branch to the OTM `main` branch in the main
    repository describing the changes done and their motivations.
 4. The PR will be reviewed by the owners' team using the
-   [GitHub strategy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request).
+   [GitHub strategy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request)
    for async communication.
 5. Once approved, the PR will be merged in the `main` branch of the OTM repository and delivered in the next
-   standard version.
+   standard release.
 
 ### Versioning
 As mentioned earlier in the documentation, the OTM standard is intended to use Semantic Versioning 2.0.0.
