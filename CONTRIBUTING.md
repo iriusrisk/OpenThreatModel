@@ -30,22 +30,23 @@ However, the proposal is already in progress, and the policy for versioning coul
 ### Code conventions
 Due to this project purpose is the standard definition, and it's not intended to have any real code on it, there are
 no specific code conventions that could apply in this case. The only advice is to pay special attention for YAML syntax
-and naming conventions already used, and ask for any doubts about it in the PR.
+and naming conventions already used, and ask for any doubts about it.
 
-### Report a bug
+### Report feedback
 
-If you spot a problem with the OTM standard definition, you can do two things:
+If you spot a problem with the OTM standard current definition, you can do two things:
 * First, you can search for it, in case the issue already exists ([open issues](https://github.com/iriusrisk/OpenThreatModel/issues)).
-* If you cannot find anything suitable, you can open a new issue. Include, if it's possible, a step-by-step guide
-to reproduce the problem, or an explanation that aids with its understanding.
+* If you cannot find anything suitable, you can open a new issue, including if possible, an explanation that aids with its understanding.
+* Alternatively, you can email us at otm@iriusrisk.com.
 
 ### Request an enhancement
 To propose improvements or changes that are not properly bugs, you can also use the [issues](https://github.com/iriusrisk/OpenThreatModel/issues)
 section. Please, try to be as clear as you can and include, at least:
-
 * **Context**. It affects all the standard, or only a part? In last case, where does it apply, which part?
 * **Motivation**. How will the proposed change improve the OTM standard? 
 * **Goal**. What is exactly the change that should be implemented?
+
+Alternatively, you can email us at otm@iriusrisk.com.
 
 ## Additional resources
 
@@ -55,7 +56,7 @@ Here they go several links and resources related with the project that could be 
 * <a href="https://github.com/iriusrisk/startleft" target="_blank">Startleft documentation</a>.
 * <a href="https://www.threatmodelingconnect.com/" target="_blank">Threat Modeling connect forum</a>.
 
-In addition, the contributing strategy for OTM is based on standardized procedures for collaborating in
+Furthermore, the contributing strategy for OTM is based on standardized procedures for collaborating in
 GitHub Open Source  projects, so these resources may be helpful for you:
 
 * [Finding ways to contribute to open source on GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github).
