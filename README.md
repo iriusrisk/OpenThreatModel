@@ -8,7 +8,7 @@ OTM can be used to document your system and threat model, to keep you threat mod
 
 # Complete example
 
-For a complete example see [EXAMPLE.yaml](EXAMPLE.yaml).
+For a complete example see [EXAMPLE.yaml](EXAMPLE.yaml) or [EXAMPLE.json](EXAMPLE.json).
 
 # Versions
 
@@ -45,6 +45,8 @@ The formats available to be used within an OTM files are:
 | `datetime` | As defined by date-time - [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) |
 
 # Schema
+
+[JSON Schema](otm_schema.json)
 
 ## OTM object
 
