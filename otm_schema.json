@@ -7,7 +7,7 @@
     "required": ["otmVersion", "project"],
     "properties": {
         "otmVersion": {
-            "type": "string",
+            "type": "string"
         },
         "project": {
             "type": "object",
