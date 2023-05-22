@@ -123,7 +123,7 @@
                     },
                     "threats": {
                         "type": "array",
-                        "items": {"$ref": "#/definitions/threat/"}
+                        "items": {"$ref": "#/definitions/threat"}
                     },
                     "tags": {
                         "type": "array",
