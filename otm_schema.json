@@ -4,8 +4,11 @@
     "title": "Open Threat Model Specification",
     "$comment" : "Open Threat Model JSON schema is published under the terms of the Apache License 2.0.",
     "type": "object",
-    "required": ["project", "otmVersion"],
+    "required": ["otmVersion", "project"],
     "properties": {
+        "otmVersion": {
+            "type": "string",
+        },
         "project": {
             "type": "object",
             "required": ["name", "id"],
