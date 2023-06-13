@@ -107,23 +107,7 @@
                         "type": ["array", "null"],
                         "items": {"$ref": "#/definitions/representationElement"}
                     },
-                    "assets": {
-                        "type": ["object", "null"],
-                        "properties": {
-                            "stored": {
-                                "type": ["array", "null"],
-                                "items": {
-                                    "type": ["string", "null"]
-                                }
-                            },
-                            "processed": {
-                                "type": ["array", "null"],
-                                "items": {
-                                    "type": ["string", "null"]
-                                }
-                            }
-                        }
-                    },
+                    "assets": {"$ref": "#/definitions/assetInstance"},
                     "threats": {
                         "type": ["array", "null"],
                         "items": {"$ref": "#/definitions/threat"}
@@ -278,6 +262,38 @@
                             "mitigation": {"type": ["string", "null"]},
                             "state": {"type": ["string", "null"]}
                         }
+                    }
+                }
+            }
+        },
+        "assetInstance": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "processed": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "stored": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             }
