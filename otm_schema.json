@@ -4,52 +4,55 @@
     "title": "Open Threat Model Specification",
     "$comment" : "Open Threat Model JSON schema is published under the terms of the Apache License 2.0.",
     "type": "object",
-    "required": ["project", "otmVersion"],
+    "required": ["otmVersion", "project"],
     "properties": {
+        "otmVersion": {
+            "type": "string"
+        },
         "project": {
             "type": "object",
             "required": ["name", "id"],
             "properties": {
                 "name": {"type": "string"},
                 "id": {"type": "string"},
-                "description": {"type": "string"},
-                "owner": {"type": "string"},
-                "ownerContact": {"type": "string"},
+                "description": {"type": ["string", "null"]},
+                "owner": {"type": ["string", "null"]},
+                "ownerContact": {"type": ["string", "null"]},
                 "tags": {
-                    "type": "array",
+                    "type": ["array", "null"],
                     "items": {
                         "type": "string"
                     }
                 },
-                "attributes": {"type": "object"}
+                "attributes": {"type": ["object", "null"]}
             }
         },
         "representations": {
-            "type": "array",
+            "type": ["array", "null"],
             "required": ["name", "id", "type"],
             "properties": {
                 "name": {"type": "string"},
                 "id": {"type": "string"},
                 "type": {"type": "string"},
-                "description": {"type": "string"},
+                "description": {"type": ["string", "null"]},
                 "size": {"$ref": "#/definitions/size"},
                 "repository": {
-                    "type": "object",
+                    "type": ["object", "null"],
                     "required": ["url"],
                     "properties": {
-                        "url": {"type": "string"}
+                        "url": {"type": ["string", "null"]}
                     }
                 },
-                "attributes": {"type": "object"}
+                "attributes": {"type": ["object", "null"]}
             }
         },
         "assets": {
-            "type": "array",
+            "type": ["array", "null"],
             "required": ["name", "id", "risk"],
             "properties": {
                 "name": {"type": "string"},
                 "id": {"type": "string"},
-                "description": {"type": "string"},
+                "description": {"type": ["string", "null"]},
                 "risk": {
                     "type": "object",
                     "required": ["confidentiality", "integrity", "availability"],
@@ -57,10 +60,10 @@
                         "confidentiality": {"type": "number"},
                         "integrity": {"type": "number"},
                         "availability": {"type": "number"},
-                        "comment": {"type": "string"}
+                        "comment": {"type": ["string", "null"]}
                     }
                 },
-                "attributes": {"type": "object"}
+                "attributes": {"type": ["object", "null"]}
             }
         },
         "trustZones": {
@@ -72,7 +75,7 @@
                     "id": {"type": "string"},
                     "name": {"type": "string"},
                     "type": {"type": "string"},
-                    "description": {"type": "string"},
+                    "description": {"type": ["string", "null"]},
                     "risk": {
                         "type": "object",
                         "required": ["trustRating"],
@@ -82,15 +85,15 @@
                     },
                     "parent": {"$ref": "#/definitions/parent"},
                     "representations": {
-                        "type": "array",
+                        "type": ["array", "null"],
                         "items": {"$ref": "#/definitions/representationElement"}
                     },
-                    "attributes": {"type": "object"}
+                    "attributes": {"type": ["object", "null"]}
                 }
             }
         },
         "components": {
-            "type": "array",
+            "type": ["array", "null"],
             "items": {
                 "type": "object",
                 "required": ["id", "name", "type", "parent"],
@@ -98,40 +101,40 @@
                     "id": {"type": "string"},
                     "name": {"type": "string"},
                     "type": {"type": "string"},
-                    "description": {"type": "string"},
+                    "description": {"type": ["string", "null"]},
                     "parent": {"$ref": "#/definitions/parent"},
                     "representations": {
-                        "type": "array",
+                        "type": ["array", "null"],
                         "items": {"$ref": "#/definitions/representationElement"}
                     },
                     "assets": {
-                        "type": "object",
+                        "type": ["object", "null"],
                         "properties": {
                             "stored": {
-                                "type": "array",
+                                "type": ["array", "null"],
                                 "items": {
-                                    "type": "string"
+                                    "type": ["string", "null"]
                                 }
                             },
                             "processed": {
-                                "type": "array",
+                                "type": ["array", "null"],
                                 "items": {
-                                    "type": "string"
+                                    "type": ["string", "null"]
                                 }
                             }
                         }
                     },
                     "threats": {
-                        "type": "array",
-                        "items": {"$ref": "#/definitions/threat/"}
+                        "type": ["array", "null"],
+                        "items": {"$ref": "#/definitions/threat"}
                     },
                     "tags": {
-                        "type": "array",
+                        "type": ["array", "null"],
                         "items": {
-                            "type": "string"
+                            "type": ["string", "null"]
                         }
                     },
-                    "attributes": {"type": "object"}
+                    "attributes": {"type": ["object", "null"]}
                 }
             }
         },
@@ -143,80 +146,83 @@
                 "properties": {
                     "id": {"type": "string"},
                     "name": {"type": "string"},
-                    "description": {"type": "string"},
-                    "bidirectional": {"type": "boolean"},
+                    "description": {"type": ["string", "null"]},
+                    "bidirectional": {"type": ["boolean", "null"]},
                     "source": {"type": "string"},
                     "destination": {"type": "string"},
                     "assets": {
-                        "type": "array",
-                        "items": {"type": "string"}
+                        "type": ["array", "null"],
+                        "items": {"type": ["string", "null"]}
                     },
-                    "threats": {"$ref": "#/definitions/threat"},
+                    "threats": {
+                        "type": ["array", "null"],
+                        "items": {"$ref": "#/definitions/threat"}
+                    },
                     "tags": {
-                        "type": "array",
+                        "type": ["array", "null"],
                         "items": {
-                            "type": "string"
+                            "type": ["string", "null"]
                         }
                     },
-                    "attributes": {"type": "object"}
+                    "attributes": {"type": ["object", "null"]}
                 }
             }
         },
         "threats": {
-            "type": "array",
+            "type": ["array", "null"],
             "items": {
                 "type": "object",
                 "required": ["id", "name", "risk"],
                 "properties": {
                     "id": {"type": "string"},
                     "name": {"type": "string"},
-                    "description": {"type": "string"},
+                    "description": {"type": ["string", "null"]},
                     "categories": {
-                        "type": "array",
-                        "items": {"type": "string"}
+                        "type": ["array", "null"],
+                        "items": {"type": ["string", "null"]}
                     },
                     "cwes": {
-                        "type": "array",
-                        "items": {"type": "string"}
+                        "type": ["array", "null"],
+                        "items": {"type": ["string", "null"]}
                     },
                     "risk": {
                         "type": "object",
                         "required": ["likelihood", "impact"],
                         "properties": {
-                            "likelihood": {"type": "number"},
-                            "likelihoodComment": {"type": "string"},
+                            "likelihood": {"type": ["number", "null"]},
+                            "likelihoodComment": {"type": ["string", "null"]},
                             "impact": {"type": "number"},
                             "impactComment": {"type": "string"}
                         }
                     },
                     "tags": {
-                        "type": "array",
+                        "type": ["array", "null"],
                         "items": {
-                            "type": "string"
+                            "type": ["string", "null"]
                         }
                     },
-                    "attributes": {"type": "object"}
+                    "attributes": {"type": ["object", "null"]}
                 }
             }
         },
         "mitigations": {
-            "type": "array",
+            "type": ["array", "null"],
             "items": {
                 "type": "object",
                 "required": ["id", "name", "riskReduction"],
                 "properties": {
                     "id": {"type": "string"},
                     "name": {"type": "string"},
-                    "description": {"type": "string"},
+                    "description": {"type": ["string", "null"]},
                     "riskReduction": {"type": "number"},
-                    "attributes": {"type": "object"}
+                    "attributes": {"type": ["object", "null"]}
                 }
             }
         }
     },
     "definitions": {
         "size": {
-            "type": "object",
+            "type": ["object", "null"],
             "required": ["width", "height"],
             "properties": {
                 "width": {"type": "number"},
@@ -235,7 +241,7 @@
             }
         },
         "position": {
-            "type": "object",
+            "type": ["object", "null"],
             "required": ["x", "y"],
             "properties": {
                 "x": {"type": "number"},
@@ -247,14 +253,14 @@
             "required": ["representation", "id"],
             "properties": {
                 "representation": {"type": "string"},
-                "name": {"type": "string"},
+                "name": {"type": ["string", "null"]},
                 "id": {"type": "string"},
                 "position": {"$ref": "#/definitions/position"},
                 "size": {"$ref": "#/definitions/size"},
-                "file": {"type": "string"},
-                "line": {"type": "number"},
-                "codeSnippet": {"type": "string"},
-                "attributes": {"type": "object"}
+                "file": {"type": ["string", "null"]},
+                "line": {"type": ["number", "null"]},
+                "codeSnippet": {"type": ["string", "null"]},
+                "attributes": {"type": ["object", "null"]}
             }
         },
         "threat": {
@@ -266,11 +272,11 @@
                 "mitigations": {
                     "type": "array",
                     "items": {
-                        "type": "object",
+                        "type": ["object", "null"],
                         "required": ["mitigation", "state"],
                         "properties": {
-                            "mitigation": {"type": "string"},
-                            "state": {"type": "string"}
+                            "mitigation": {"type": ["string", "null"]},
+                            "state": {"type": ["string", "null"]}
                         }
                     }
                 }
