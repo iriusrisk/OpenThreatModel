@@ -134,6 +134,10 @@
                     "bidirectional": {"type": ["boolean", "null"]},
                     "source": {"type": "string"},
                     "destination": {"type": "string"},
+                    "representations": {
+                        "type": ["array", "null"],
+                        "items": {"$ref": "#/definitions/representationElement"}
+                    },
                     "assets": {
                         "type": ["array", "null"],
                         "items": {"type": ["string", "null"]}

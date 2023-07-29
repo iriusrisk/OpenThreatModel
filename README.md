@@ -15,7 +15,7 @@ For a complete example see [EXAMPLE.yaml](EXAMPLE.yaml) or [EXAMPLE.json](EXAMPL
 The Open Threat Model specification is versioned using [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) (semver) and follows the semver specification.
 
 ```
-Current schema version: 0.1.0
+Current schema version: 0.1.1
 ```
 
 # Format
