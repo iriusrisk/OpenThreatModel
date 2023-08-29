@@ -74,7 +74,6 @@
                 "properties": {
                     "id": {"type": "string"},
                     "name": {"type": "string"},
-                    "type": {"type": "string"},
                     "description": {"type": ["string", "null"]},
                     "risk": {
                         "type": "object",
