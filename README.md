@@ -15,7 +15,7 @@ For a complete example see [EXAMPLE.yaml](EXAMPLE.yaml) or [EXAMPLE.json](EXAMPL
 The Open Threat Model specification is versioned using [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) (semver) and follows the semver specification.
 
 ```
-Current schema version: 0.1.0
+Current schema version: 0.2.0
 ```
 
 # Format
@@ -1128,6 +1128,18 @@ Trust zones are the different areas within which components are located. They de
 <td>
 
     id: 730df42e-69a4-11ed-bd69-9b318e4f98c5
+
+</td>
+</tr>
+
+<tr></tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td><b>RECOMMENDED (required in the next major version)</b> Type for the trust zone</td>
+<td>
+
+    type: internet
 
 </td>
 </tr>

@@ -1,4 +1,4 @@
-otmVersion: 0.1.0
+otmVersion: 0.2.0
 project:
   name: Test project
   id: test-project
@@ -167,6 +167,7 @@ dataflows:
 trustZones:
   - name: Internet
     id: f0ba7722-39b6-4c81-8290-a30a248bb8d9
+    type: internet
     description: This is the internet trust zone
     risk:
       trustRating: 20
@@ -182,6 +183,7 @@ trustZones:
     attributes:
   - name: Private
     id: 2ab4effa-40b7-4cd2-ba81-8247d29a6f2d
+    type: private
     description: Private trustzone for protected components
     risk:
       trustRating: 100
