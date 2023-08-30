@@ -15,7 +15,7 @@ For a complete example see [EXAMPLE.yaml](EXAMPLE.yaml) or [EXAMPLE.json](EXAMPL
 The Open Threat Model specification is versioned using [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) (semver) and follows the semver specification.
 
 ```
-Current schema version: 0.1.0
+Current schema version: 0.2.0
 ```
 
 # Format
@@ -755,7 +755,7 @@ Assets are the different kinds of sensible information that take part in our thr
 
 ```yaml
 assets:
-    - name: Credit Card Data
+  - name: Credit Card Data
     id: cc-data
     description: Credit card numbers used for payments in the platform
     risk:
@@ -1136,7 +1136,7 @@ Trust zones are the different areas within which components are located. They de
 <tr>
 <td>type</td>
 <td>string</td>
-<td><b>REQUIRED</b> Type for the trust zone</td>
+<td><b>RECOMMENDED (required in the next major version)</b> Type for the trust zone</td>
 <td>
 
     type: internet
@@ -1211,7 +1211,6 @@ A trust zone can have <b>zero or one parent</b>: another component or a trust zo
 trustzones:
   - name: Internet
     id: 730df42e-69a4-11ed-bd69-9b318e4f98c5
-    type: internet
     description: This is the internet trust zone
     risk:
       trustRating: 20
@@ -1864,7 +1863,7 @@ mitigations:
   - name: Mitigation 2
     id: 3b837730-e300-11eb-ba80-0242ac130004
     description: Description for mitigation 2
-    riskReduction 100
+    riskReduction: 100
 ```
 
 ## Mitigation instance object
