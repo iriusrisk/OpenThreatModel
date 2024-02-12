@@ -31,7 +31,7 @@ assets:
       confidentiality: 100
       integrity: 100
       availability: 100
-      riskComments: We have decided that the values are a 100 for all values since this highly sensitive information
+      comment: We have decided that the values are a 100 for all values since this highly sensitive information
     attributes:
   - name: Public Info
     id: public-info
@@ -40,7 +40,7 @@ assets:
       confidentiality: 0
       integrity: 100
       availability: 50
-      riskComments: Public information has no confidentiality at all but it is quite important for it to be available and to not be changed by attakers
+      comment: Public information has no confidentiality at all but it is quite important for it to be available and to not be changed by attakers
     attributes:
 
 components:
