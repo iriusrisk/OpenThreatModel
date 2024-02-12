@@ -248,6 +248,7 @@
                 "position": {"$ref": "#/definitions/position"},
                 "size": {"$ref": "#/definitions/size"},
                 "file": {"type": ["string", "null"]},
+                "package": {"type": ["string", "null"]},
                 "line": {"type": ["number", "null"]},
                 "codeSnippet": {"type": ["string", "null"]},
                 "attributes": {"type": ["object", "null"]}
