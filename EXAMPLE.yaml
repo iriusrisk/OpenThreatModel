@@ -48,8 +48,8 @@ components:
     id: web-client
     description: It represent a connection from the internet to our ecosystem
     parent:
-      trustZone: f0ba7722-39b6-4c81-8290-a30a248bb8d9
-    type: web-client
+      trustZone: internet-trustzone
+    type: CD-V2-WEB-CLIENT
     tags:
       - external
     representations:
@@ -68,8 +68,8 @@ components:
     id: web-service
     description: Runs our web application
     parent:
-      trustZone: 2ab4effa-40b7-4cd2-ba81-8247d29a6f2d
-    type: web-service
+      trustZone: private-trustzone
+    type: CD-V2-WEB-SERVICE
     tags:
       - tomcat
     representations:
@@ -98,8 +98,8 @@ components:
     id: customer-database
     description: Postgres database
     parent:
-      trustZone: 2ab4effa-40b7-4cd2-ba81-8247d29a6f2d
-    type: database
+      trustZone: private-trustzone
+    type: CD-V2-POSTGRESQL
     tags:
       - postgres
     representations:
@@ -115,9 +115,9 @@ components:
   - name: Class CustomerDatabase
     id: class-customerdatabase
     description: Managages customer database
-    type: code-class
+    type: CD-V2-CODE-SNIPPET-SHARING
     parent:
-      trustZone: 2ab4effa-40b7-4cd2-ba81-8247d29a6f2d
+      trustZone: private-trustzone
     representations:
       - representation: application-code
         id: database class
@@ -166,8 +166,8 @@ dataflows:
 
 trustZones:
   - name: Internet
-    id: f0ba7722-39b6-4c81-8290-a30a248bb8d9
-    type: internet
+    id: internet-trustzone
+    type: f0ba7722-39b6-4c81-8290-a30a248bb8d9
     description: This is the internet trust zone
     risk:
       trustRating: 20
@@ -182,8 +182,8 @@ trustZones:
           height: 100
     attributes:
   - name: Private
-    id: 2ab4effa-40b7-4cd2-ba81-8247d29a6f2d
-    type: private
+    id: private-trustzone
+    type: 2ab4effa-40b7-4cd2-ba81-8247d29a6f2d
     description: Private trustzone for protected components
     risk:
       trustRating: 100
