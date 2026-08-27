@@ -188,6 +188,7 @@
       "name": "Dataflow between webclient and webservice.",
       "id": "webclient-to-webservice",
       "bidirectional": true,
+      "crossesTrustBoundary": true,
       "source": "web-client",
       "destination": "web-service",
       "tags": null,
@@ -200,6 +201,7 @@
       "name": "Dataflow between webservice and mongo.",
       "id": "cc-store-in-db",
       "bidirectional": true,
+      "crossesTrustBoundary": false,
       "source": "web-service",
       "destination": "customer-database",
       "tags": [

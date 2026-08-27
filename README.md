@@ -1412,6 +1412,21 @@ By default, it is false.</td>
 
 <tr></tr>
 <tr>
+<td>crossesTrustBoundary</td>
+<td>boolean</td>
+<td>States whether this dataflow crosses a trust boundary — i.e. its source and destination sit in different trust zones, or otherwise interact under different privileges (see the <a href="#trustzones-object">TrustZones object</a>). This is derivable by comparing the source's and destination's enclosing trust zone, but is RECOMMENDED as an explicit field so that threat-modeling tools and viewers do not need to resolve the full parent chain (including nested trust zones) themselves, and so that boundary-crossing flows — the flows STRIDE analysis concentrates on — can be identified and rendered distinctly without extra computation.
+
+By default, it is false.</td>
+
+<td>
+
+    crossesTrustBoundary: true
+
+</td>
+</tr>
+
+<tr></tr>
+<tr>
 <td>source</td>
 <td>string</td>
 <td><b>REQUIRED</b> Unique identifier for the source component of the dataflow.</td>
@@ -1480,6 +1495,7 @@ dataflows:
     id: cc-store-in-db
     description: Creditcard information being exchanged in between the web app and the data base
     bidirectional: true
+    crossesTrustBoundary: true
     source: web-service
     target: customer-database
     tags:
