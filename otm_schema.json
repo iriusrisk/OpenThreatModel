@@ -138,6 +138,7 @@
                     "name": {"type": "string"},
                     "description": {"type": ["string", "null"]},
                     "bidirectional": {"type": ["boolean", "null"]},
+                    "crossesTrustBoundary": {"type": ["boolean", "null"]},
                     "source": {"type": "string"},
                     "destination": {"type": "string"},
                     "assets": {
